@@ -1,9 +1,7 @@
 "use strict";
 
-class Storage {
+module.exports = class {
     constructor(type) {
         this.type = type;
     }
-}
-
-module.exports = Storage;
+};
