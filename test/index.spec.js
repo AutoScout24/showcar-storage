@@ -2,7 +2,7 @@
 var Storage = require("../dist/storage.js");
 
 describe("The Showcar Storage Module", function () {
-    describe("Supported types", function () {
+    describe("The supported types", function () {
         function storageInstantiator(type) {
             new Storage(type);
         }
@@ -28,17 +28,24 @@ describe("The Showcar Storage Module", function () {
         });
     });
 
-    it ("should call through get function to the store", function () {
-        var store = {
+    describe("The accessors", function () {
+        var storage;
+        var storeStub = {
             get: function() {}
         };
-        spyOn(store, "get").and.returnValue(4);
 
-        var storage = new Storage("local");
-        storage.store = store;
-        var result = storage.get('myKey');
+        beforeEach(function () {
+            storage = new Storage("local");
+            storage.store = storeStub;
+        });
 
-        expect(store.get).toHaveBeenCalledWith('myKey');
-        expect(result).toBe(4);
+        it("should pass through get call to the store", function () {
+            spyOn(storeStub, "get").and.returnValue(4);
+
+            var result = storage.get('myKey');
+
+            expect(storeStub.get).toHaveBeenCalledWith('myKey');
+            expect(result).toBe(4);
+        });
     });
 });
