@@ -5,7 +5,8 @@ module.exports = class Storage {
         if (!Storage.isSupportedType(type)) {
             throw new Error(`Unsupported type ${type}`);
         }
-        this.type = type;
+
+        this.store = new (require(`../lib/stores/${type}.js`))();
     }
 
     get(key) {

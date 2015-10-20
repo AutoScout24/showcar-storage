@@ -2,27 +2,29 @@
 var Storage = require("../dist/index.js");
 
 describe("The Showcar Storage Module", function () {
-    describe ("Supported types", function () {
-        it("should accept storage type 'local'", function () {
-            var storage = new Storage("local");
-            expect(storage.type).toBe("local");
+    describe("Supported types", function () {
+        function storageInstantiator(type) {
+            new Storage(type);
+        }
 
+        it("should accept storage type 'local'", function () {
+            expect(storageInstantiator.bind(null, "local")).not.toThrow();
         });
         it("should accept storage type 'session'", function () {
-            var storage = new Storage("session");
-            expect(storage.type).toBe("session");
-
+            expect(storageInstantiator.bind(null, "session")).not.toThrow();
         });
         it("should accept storage type 'cookie'", function () {
-            var storage = new Storage("cookie");
-            expect(storage.type).toBe("cookie");
-
+            expect(storageInstantiator.bind(null, "cookie")).not.toThrow();
         });
         it("should throw an exception on an unsupported type", function () {
-            function wrapper() {
-                var storage = new Storage("someOtherStore");
-            }
-            expect(wrapper).toThrow();
+            expect(storageInstantiator.bind(null, "unsupported store type")).toThrow();
+        });
+    });
+
+    describe("The store backend", function () {
+        it("should have the correct store instance", function () {
+            var storage = new Storage("local");
+            expect(storage.store.constructor.name).toBe("LocalStore");
         });
     });
 
