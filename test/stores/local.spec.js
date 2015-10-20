@@ -33,5 +33,12 @@ describe("The localStore", function () {
             expect(value).toBe(true);
         });
 
+        it("should implement a remover", function () {
+            localStorage.setItem('myKey', 'myValue');
+
+            localStore.remove('myKey');
+
+            expect(localStorage.getItem('myKey')).toBeNull();
+        });
     });
 });
