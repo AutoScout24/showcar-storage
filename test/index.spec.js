@@ -31,7 +31,8 @@ describe("The Showcar Storage Module", function () {
     describe("The accessors", function () {
         var storage;
         var storeStub = {
-            get: function() {}
+            get: function() {},
+            set: function() {}
         };
 
         beforeEach(function () {
@@ -46,6 +47,15 @@ describe("The Showcar Storage Module", function () {
 
             expect(storeStub.get).toHaveBeenCalledWith('myKey');
             expect(result).toBe(4);
+        });
+
+        it("should pass through set call to the store", function () {
+            spyOn(storeStub, "set");
+
+            var result = storage.set('myKey', 4);
+
+            expect(storeStub.set).toHaveBeenCalledWith('myKey', 4);
+            expect(result).toBe(storage);
         });
     });
 });
