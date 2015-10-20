@@ -25,5 +25,13 @@ describe("The localStore", function () {
             expect(localStorage.getItem('myKey')).toBe('myValue');
         });
 
+        it("should implement a hasser", function () {
+            localStorage.setItem('myKey', 'myValue');
+
+            var value = localStore.has('myKey');
+
+            expect(value).toBe(true);
+        });
+
     });
 });
