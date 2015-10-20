@@ -33,7 +33,8 @@ describe("The Showcar Storage Module", function () {
         var storeStub = {
             get: function () {},
             set: function () {},
-            has: function () {}
+            has: function () {},
+            remove: function () {}
         };
 
         beforeEach(function () {
@@ -66,6 +67,15 @@ describe("The Showcar Storage Module", function () {
 
             expect(storeStub.has).toHaveBeenCalledWith('myKey');
             expect(result).toBe(true);
+        });
+
+        it("should pass through remove call to the store", function () {
+            spyOn(storeStub, "remove");
+
+            var result = storage.remove('myKey');
+
+            expect(storeStub.remove).toHaveBeenCalledWith('myKey');
+            expect(result).toBe(storage);
         });
     });
 });
