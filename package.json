@@ -4,7 +4,7 @@
   "description": "This module provides an abstraction layer for storing information on the client-side.",
   "main": "index.js",
   "scripts": {
-    "pretest": "./node_modules/babel/bin/babel.js index.js > dist/index.js",
+    "pretest": "./node_modules/babel/bin/babel.js lib -d dist",
     "test": "./node_modules/karma/bin/karma start"
   },
   "repository": {
