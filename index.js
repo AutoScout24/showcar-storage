@@ -8,6 +8,10 @@ module.exports = class Storage {
         this.type = type;
     }
 
+    get(key) {
+        return this.store.get(key);
+    }
+
     static isSupportedType(type) {
         const supportedTypes = ["local", "session", "cookie"];
         return supportedTypes.indexOf(type) > -1;

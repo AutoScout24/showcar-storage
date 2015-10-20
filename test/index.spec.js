@@ -25,4 +25,18 @@ describe("The Showcar Storage Module", function () {
             expect(wrapper).toThrow();
         });
     });
+
+    it ("should call through get function to the store", function () {
+        var store = {
+            get: function() {}
+        };
+        spyOn(store, "get").and.returnValue(4);
+
+        var storage = new Storage("local");
+        storage.store = store;
+        var result = storage.get('myKey');
+
+        expect(store.get).toHaveBeenCalledWith('myKey');
+        expect(result).toBe(4);
+    });
 });
