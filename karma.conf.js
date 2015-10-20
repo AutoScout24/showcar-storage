@@ -2,10 +2,7 @@ module.exports = function(config) {
     config.set({
         basePath: '',
         frameworks: ['jasmine'],
-        files: [
-          'index.js',
-          'test/*.spec.js'
-        ],
+        files: ['test/*.spec.js'],
         exclude: [],
         preprocessors: {
             'index.js': ['webpack'],
