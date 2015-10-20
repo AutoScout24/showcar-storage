@@ -1,4 +1,4 @@
-var Storage = require("../index.js");
+var Storage = require("../dist/index.js");
 
 describe("The Showcar Storage Module", function () {
     it("should be of the supplied type", function () {
