@@ -21,17 +21,19 @@ describe("The cookieStore", function () {
 
         it("should implement a getter", function () {
             document.cookie = 'a=b;path=/foo';
-            document.cookie = 'myKey=myValue';
+            document.cookie = `${encodeURIComponent('myعKöy')}=${encodeURIComponent('myVثاälue')}`;
             document.cookie = 'c=d;secure';
 
-            var value = cookieStore.get('myKey');
+            var value = cookieStore.get('myعKöy');
 
-            expect(value).toBe('myValue');
+            expect(value).toBe('myVثاälue');
         });
         it("should implement a setter", function () {
-            cookieStore.set('myKey', 'myValue');
+            cookieStore.set('myعKöy', 'myVثاälue');
 
-            expect(document.cookie.indexOf('myKey=myValue')).toBeGreaterThan(-1);
+            var keyValPair = `${encodeURIComponent('myعKöy')}=${encodeURIComponent('myVثاälue')}`;
+
+            expect(document.cookie.indexOf(keyValPair)).toBeGreaterThan(-1);
         });
     });
 });
