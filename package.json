@@ -27,6 +27,8 @@
     "karma": "^0.13.11",
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "^0.2.2",
+    "karma-mocha-reporter": "^1.1.1",
+    "karma-say-reporter": "^0.1.0",
     "karma-webpack": "^1.7.0",
     "webpack": "^1.12.2"
   }
