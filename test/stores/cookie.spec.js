@@ -27,6 +27,12 @@ describe("The cookieStore", function () {
 
             expect(document.cookie.indexOf(pair)).toBeGreaterThan(-1);
         });
+
+        it("should implement a hasser", function () {
+            cookieStore.set(key, value);
+
+            expect(cookieStore.has(key)).toBe(true);
+        });
     });
 
     const clearAllCookies = () => {
