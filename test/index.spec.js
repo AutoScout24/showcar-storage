@@ -51,6 +51,14 @@ describe("The Showcar Storage Module", function () {
             expect(result).toBe(4);
         });
 
+        it("should accept a default value which is returned if the key is not found", function () {
+            spyOn(storeStub, "get").and.returnValue(null);
+
+            var result = storage.get('myKey', 'myDefaultValue');
+
+            expect(result).toBe('myDefaultValue');
+        });
+
         it("should pass through set call to the store", function () {
             spyOn(storeStub, "set");
 
