@@ -16,15 +16,13 @@ describe("The cookieStore", function () {
         });
 
         it("should implement a getter returning the correct value for a key found", function () {
-            ['a=b;path=/foo', pair, 'c=d;secure']
-                .forEach(e => document.cookie = e);
+            writeCookies();
 
             expect(cookieStore.get(key)).toBe(value);
         });
 
         it("should implement a getter returning null for a key not found", function () {
-            ['a=b;path=/foo', pair, 'c=d;secure']
-                .forEach(e => document.cookie = e);
+            writeCookies();
 
             expect(cookieStore.get("nonexistent_element")).toBeNull();
         });
@@ -36,11 +34,24 @@ describe("The cookieStore", function () {
         });
 
         it("should implement a hasser", function () {
-            cookieStore.set(key, value);
+            writeCookies();
 
             expect(cookieStore.has(key)).toBe(true);
         });
+
+        it("should implement a remover", function () {
+            writeCookies();
+
+            cookieStore.remove(key);
+
+            expect(document.cookie.indexOf(pair)).toBe(-1);
+        });
     });
+
+    const writeCookies = () => {
+        ['a=b;path=/foo', pair, 'c=d;secure']
+            .forEach(e => document.cookie = e);
+    };
 
     const clearAllCookies = () => {
         let replacement = `=;expires=${new Date().toUTCString()};path=/`;
