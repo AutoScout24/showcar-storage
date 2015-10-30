@@ -22,6 +22,13 @@ describe("The cookieStore", function () {
             expect(cookieStore.get(key)).toBe(value);
         });
 
+        it("should implement a getter returning null for a key not found", function () {
+            ['a=b;path=/foo', pair, 'c=d;secure']
+                .forEach(e => document.cookie = e);
+
+            expect(cookieStore.get("nonexistent_element")).toBeNull();
+        });
+
         it("should implement a setter", function () {
             cookieStore.set(key, value);
 
