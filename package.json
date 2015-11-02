@@ -1,6 +1,6 @@
 {
   "name": "showcar-storage",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "This module provides an abstraction layer for storing information on the client-side.",
   "main": "lib/storage.js",
   "scripts": {
