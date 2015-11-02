@@ -7,17 +7,17 @@ This module provides an abstraction layer for storing information on the client-
 
 How to use:
 
-### require the module
+### instantiation
 
-    var storage = require("showcar-storage");
+```javascript
+    const Storage = require("showcar-storage");
+    
+    const localStore = new Storage("local");
+    const sessionStore = new Storage("session");
+    const cookieStore = new Storage("cookie");
+```
 
-### find the exposed objects
-
-    var localStore = storage.local;
-    var sessionStore = storage.session;
-    var cookieStore = storage.cookie;
-
-### use the following api for each exposed object
+### use the following api
 
 #### `someStore.set(key, value);`
 
@@ -25,15 +25,12 @@ How to use:
 
   Returns the reference to the respective store, i.e. `someStore`.
 
-#### `someStore.get(key[, defaultOrFunction]);`
+#### `someStore.get(key[, default = null]);`
 
   Gets the value for the specified key from the respective store. If a second argument is given and
   a value for the specified key is not found in the respective store, the second argument is returned.
-  If the second argument is a function, the function is invoked in the context of the respective store
-  synonymous to `defaultOrFunction.call(someStore, key, value);` with `value` being `null` if a value
-  for the specified key is not found in the respective store.
 
-  Returns the stored value, `null`, or the result of the provided function.
+  Returns the stored value or the value of `default`.
 
 #### `someStore.has(key);`
 
@@ -45,7 +42,6 @@ How to use:
 #### `someStore.remove(key);`
 
   Deletes the key and the associated value from the respective store.
-  This method is synonymous to `someStore.set(key, null);`.
 
   Returns the reference to the respective store, i.e. `someStore`.
 
@@ -54,14 +50,25 @@ How to use:
 
 ### How to install:
 
-here be instructions
-
 
 ## contributing
 
 ### How to contribute:
 
-here be instructions
+  Fork this repository and `git clone` your fork. Then `npm install` the required dependencies.
+
+#### Run the tests
+
+  Run `npm test`. (Will run `npm run-script transpile` as prerequisite.)
+
+#### Build for dev
+
+  Run `npm run-script transpile`. Find the generated files in _./dist/_.
+
+#### Build dist
+
+  Run `npm run-script dist`. Find the generated file _./dist/storage.min.js_ next to it's sourcemap.
+  (Will run `npm run-script transpile` as prerequisite.)
 
 
 ## license
