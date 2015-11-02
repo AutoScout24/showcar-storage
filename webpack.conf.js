@@ -6,5 +6,6 @@ module.exports = {
     },
     plugins: [
         new (require("webpack")).optimize.UglifyJsPlugin({minimize: true})
-    ]
+    ],
+    "devtool": "source-map"
 };
