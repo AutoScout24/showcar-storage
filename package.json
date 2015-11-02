@@ -4,8 +4,9 @@
   "description": "This module provides an abstraction layer for storing information on the client-side.",
   "main": "lib/storage.js",
   "scripts": {
-    "pretest": "./node_modules/babel/bin/babel.js lib -d dist",
-    "test": "./node_modules/karma/bin/karma start"
+    "transpile": "./node_modules/babel-cli/bin/babel.js lib --out-dir dist",
+    "dist": "npm run-script transpile && ./node_modules/webpack/bin/webpack.js --config webpack.conf.js",
+    "test": "npm run-script transpile && ./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",
@@ -20,17 +21,20 @@
   "bugs": {
     "url": "https://github.com/autoscout24/showcar-storage/issues"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "homepage": "https://github.com/autoscout24/showcar-storage#readme",
   "devDependencies": {
-    "babel-core": "^6.0.16",
-    "babel-loader": "^6.0.0",
+    "babel-cli": "^6.0.15",
     "babel-preset-es2015": "^6.0.15",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.11",
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "^0.2.2",
     "karma-mocha-reporter": "^1.1.1",
-    "karma-say-reporter": "^0.1.0",
     "karma-webpack": "^1.7.0",
     "webpack": "^1.12.2"
   }
