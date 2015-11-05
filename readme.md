@@ -59,16 +59,15 @@ How to use:
 
 #### Run the tests
 
-  Run `npm test`. (Will run `npm run-script transpile` as prerequisite.)
+  Run `./node_modules/grunt-cli/bin/grunt test`.
 
 #### Build for dev
 
-  Run `npm run-script transpile`. Find the generated files in _./dist/_.
+  Run `./node_modules/grunt-cli/bin/grunt build`. Find the generated files in _./dist/_.
 
 #### Build dist
 
-  Run `npm run-script dist`. Find the generated file _./dist/storage.min.js_ next to it's sourcemap.
-  (Will run `npm run-script transpile` as prerequisite.)
+  Run `./node_modules/grunt-cli/bin/grunt dist`. Find the generated file _./dist/storage.min.js_ next to it's sourcemap.
 
 
 ## license
