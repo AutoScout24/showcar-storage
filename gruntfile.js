@@ -17,8 +17,6 @@ module.exports = function (grunt) {
         karma: {storage: {configFile: "./config/karma.conf.js"}}
     });
 
-    //console.log(require("util").inspect(grunt.config, {colors: true, showHidden: true, depth: 6}));
-
     grunt.registerTask("default", ["webpack"]);
     grunt.registerTask("build", ["webpack", "uglify"]);
     grunt.registerTask("test", ["karma"]);

@@ -10,7 +10,7 @@ module.exports = function (config) {
         webpackMiddleware: { stats: false },
         frameworks: ['jasmine'],
         reporters: ['mocha'],
-        browsers: ['Chrome', ''],
+        browsers: ['Chrome', 'Firefox', 'Safari'],
         singleRun: true
     })
 };
