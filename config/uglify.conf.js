@@ -3,9 +3,9 @@ module.exports = {
         compress: true,
         mangle: true,
         sourceMap: true,
-        sourceMapIn: "dist/storage.js.map"
+        sourceMapIn: "dist/showcar-storage.js.map"
     },
     files: {
-        "dist/storage.min.js": "dist/storage.js"
+        "dist/showcar-storage.min.js": "dist/showcar-storage.js"
     }
 };

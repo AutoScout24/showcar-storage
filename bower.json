@@ -1,0 +1,22 @@
+{
+  "name": "showcar-storage",
+  "version": "1.0.0",
+  "homepage": "https://github.com/AutoScout24/showcar-storage",
+  "authors": [
+    "AutoScout24"
+  ],
+  "description": "This module provides an abstraction layer for storing information on the client-side.",
+  "main": "dist/showcar-storage.min.js",
+  "keywords": [
+    "showcar",
+    "storage"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "gruntfile.js"
+  ]
+}
