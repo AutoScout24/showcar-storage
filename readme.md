@@ -57,18 +57,25 @@ How to use:
 
   Fork this repository and `git clone` your fork. Then `npm install` the required dependencies.
 
+  Note: If you do not have `grunt` installed globally, use `./node_modules/.bin/grunt` instead.
+
 #### Run the tests
 
-  Run `npm test`. (Will run `npm run-script transpile` as prerequisite.)
+  Run `grunt test` (or `./node_modules/.bin/grunt test`).
 
 #### Build for dev
 
-  Run `npm run-script transpile`. Find the generated files in _./dist/_.
+  Run `grunt build` (or `./node_modules/.bin/grunt build`). Find the generated files in _./dist/_ next to it's sourcemap.
 
-#### Build dist
+#### Build minified for distribution
 
-  Run `npm run-script dist`. Find the generated file _./dist/storage.min.js_ next to it's sourcemap.
-  (Will run `npm run-script transpile` as prerequisite.)
+  Run `grunt dist` (or `./node_modules/.bin/grunt dist`). Find the generated file _./dist/storage.min.js_ next to it's sourcemap.
+
+#### Contribute
+
+  Save your changes and run `grunt dist` (or `./node_modules/.bin/grunt dist`).
+
+  Commit your code _and_ the compiled libraries in _./dist_. Then create a pull-request.
 
 
 ## license

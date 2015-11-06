@@ -1,5 +1,5 @@
 "use strict";
-var SessionStore = require("../../dist/stores/session.js");
+var SessionStore = require("../../lib/stores/session.js");
 
 describe("The sessionStore", function () {
     describe("The accessors", function () {
