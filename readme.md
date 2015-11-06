@@ -3,11 +3,11 @@
 This module provides an abstraction layer for storing information on the client-side.
 
 
-## usage
+## Usage
 
 How to use:
 
-### instantiation
+### Instantiation
 
 ```javascript
     const Storage = require("showcar-storage");
@@ -17,7 +17,7 @@ How to use:
     const cookieStore = new Storage("cookie");
 ```
 
-### use the following api
+### Use the following api
 
 #### `someStore.set(key, value);`
 
@@ -46,15 +46,15 @@ How to use:
   Returns the reference to the respective store, i.e. `someStore`.
 
 
-## installation
+## Installation
 
 ### How to install:
 
-  To install showcar-icons within your project use bower.
+  To install showcar-storage within your project use bower.
   
   `bower install --save git@github.com:AutoScout24/showcar-storage.git`
 
-## contributing
+## Contributing
 
 ### How to contribute:
 
@@ -81,6 +81,6 @@ How to use:
   Commit your code _and_ the compiled libraries in _./dist_. Then create a pull-request.
 
 
-## license
+## License
 
 MIT License
