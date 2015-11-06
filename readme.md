@@ -50,6 +50,9 @@ How to use:
 
 ### How to install:
 
+  To install showcar-icons within your project use bower.
+  
+  `bower install --save git@github.com:AutoScout24/showcar-storage.git`
 
 ## contributing
 
