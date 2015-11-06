@@ -17,10 +17,11 @@ module.exports = function (grunt) {
         karma: {storage: {configFile: "./config/karma.conf.js"}}
     });
 
-    grunt.registerTask("default", ["build"]);
     grunt.registerTask("build", ["webpack"]);
     grunt.registerTask("dist", ["webpack", "uglify"]);
     grunt.registerTask("test", ["karma"]);
+
+    grunt.registerTask("default", ["dist"]);
 
     require('load-grunt-tasks')(grunt, {
         pattern: ['grunt-*', "!grunt-cli"]
