@@ -3,7 +3,7 @@ module.exports = function (config) {
         basePath: '../',
         files: [ 'test/**/*.spec.js' ],
         preprocessors: {
-            'lib/**/*.js': ['webpack'],
+            'src/**/*.js': ['webpack'],
             'test/**/*.spec.js': ['webpack']
         },
         webpack: { module: require("./webpack.conf.js").module },

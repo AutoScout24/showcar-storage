@@ -1,5 +1,5 @@
 "use strict";
-var Storage = require("../lib/storage.js");
+var Storage = require("../src/storage.js");
 
 describe("The Showcar Storage Module", function () {
     describe("The supported types", function () {

@@ -1,5 +1,5 @@
 "use strict";
-var CookieStore = require("../../lib/stores/cookie.js");
+var CookieStore = require("../../src/stores/cookie.js");
 
 describe("The cookieStore", function () {
     let cookieStore;

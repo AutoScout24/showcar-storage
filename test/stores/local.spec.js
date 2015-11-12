@@ -1,5 +1,5 @@
 "use strict";
-var LocalStore = require("../../lib/stores/local.js");
+var LocalStore = require("../../src/stores/local.js");
 
 describe("The localStore", function () {
     describe("The accessors", function () {
