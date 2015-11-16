@@ -42,27 +42,42 @@ describe("The cookieStore", function () {
         });
 
         define("the setter", function () {
-            it("should implement a setter and set the expiration date to 9999 and path to /", function () {
+            it("should set a cookie", function () {
                 cookieStore.set(key, value);
 
                 expect(document.cookie.indexOf(pair)).toBeGreaterThan(-1);
-                expect(document.cookie.indexOf('path=/')).toBeGreaterThan(-1);
-                expect(document.cookie.indexOf('expires='))
             });
 
-            it("should set a date to a given date string", function () {
+            it("should set a cookie with expiration in seconds", function (done) {
+                cookieStore.set(key, value, { expires: 1 });
+                checkIfCookieGoesAway({after: 1000, then: done});
+            });
 
-            })
+            it("should set a cookie with expiration as date-object", function (done) {
+                var expiration = new Date(Date.now() + 1000);
+                cookieStore.set(key, value, { expires: expiration });
+                checkIfCookieGoesAway({after: 1000, then: done});
+            });
 
-            it("should add a 600 seconds to the current date for exparation", function () {
+            it("should set a cookie with expiration as UTC string", function (done) {
+                var expiration = (new Date(Date.now() + 1000)).toUTCString();
+                cookieStore.set(key, value, { expires: expiration });
+                checkIfCookieGoesAway({after: 1000, then: done});
+            });
 
-            })
+            xit("should accept /foo as optional path", function () {
 
-            it("should accept /foo as optional path", function () {
-
-            })
+            });
         });
     });
+
+    const checkIfCookieGoesAway = ({after = 1000, then: done = ()=>{} } = {} ) => {
+        expect(document.cookie.indexOf(pair)).toBeGreaterThan(-1);
+        setTimeout(function () {
+            expect(document.cookie.indexOf(pair)).toBe(-1);
+            done();
+        }, after + 100);
+    };
 
     const writeCookies = () => {
         ['a=b;path=/foo', pair, 'c=d;secure']

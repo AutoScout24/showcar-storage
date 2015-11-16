@@ -15,11 +15,22 @@ module.exports = class CookieStore {
         return null;
     }
 
-    set (key, value, expires = "Fri, 31 Dec 9999 23:59:59 GMT") {
+    set (key, value, { expires = "Fri, 31 Dec 9999 23:59:59 GMT" } = {}) {
+
+        // support expires in seconds
+        if (!isNaN(parseFloat(expires)) && isFinite(expires)) {
+            expires = (new Date(Date.now() + parseInt(expires) * 1000)).toUTCString();
+        }
+
+        // support expires as date-object
+        if (expires instanceof Date) {
+            expires = expires.toUTCString();
+        }
+
         document.cookie = [
             `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
             `expires=${expires}`,
-            "path=/"
+            `path=/`
         ].join("; ");
     }
 
