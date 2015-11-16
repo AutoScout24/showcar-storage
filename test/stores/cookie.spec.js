@@ -27,12 +27,6 @@ describe("The cookieStore", function () {
             expect(cookieStore.get("nonexistent_element")).toBeNull();
         });
 
-        it("should implement a setter", function () {
-            cookieStore.set(key, value);
-
-            expect(document.cookie.indexOf(pair)).toBeGreaterThan(-1);
-        });
-
         it("should implement a hasser", function () {
             writeCookies();
 
@@ -45,6 +39,28 @@ describe("The cookieStore", function () {
             cookieStore.remove(key);
 
             expect(document.cookie.indexOf(pair)).toBe(-1);
+        });
+
+        define("the setter", function () {
+            it("should implement a setter and set the expiration date to 9999 and path to /", function () {
+                cookieStore.set(key, value);
+
+                expect(document.cookie.indexOf(pair)).toBeGreaterThan(-1);
+                expect(document.cookie.indexOf('path=/')).toBeGreaterThan(-1);
+                expect(document.cookie.indexOf('expires='))
+            });
+
+            it("should set a date to a given date string", function () {
+
+            })
+
+            it("should add a 600 seconds to the current date for exparation", function () {
+
+            })
+
+            it("should accept /foo as optional path", function () {
+
+            })
         });
     });
 
