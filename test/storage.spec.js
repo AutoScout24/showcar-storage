@@ -62,9 +62,11 @@ describe("The Showcar Storage Module", function () {
         it("should pass through set call to the store", function () {
             spyOn(storeStub, "set");
 
-            var result = storage.set('myKey', 4);
+            var options = { path: "/foo", expires: 123456 };
 
-            expect(storeStub.set).toHaveBeenCalledWith('myKey', 4);
+            var result = storage.set('myKey', 4, options);
+
+            expect(storeStub.set).toHaveBeenCalledWith('myKey', 4, options);
             expect(result).toBe(storage);
         });
 

@@ -24,8 +24,8 @@ module.exports = class Storage {
         return result;
     }
 
-    set (key, value) {
-        this.store.set(key, value);
+    set (key, value, options) {
+        this.store.set(key, value, options);
         return this;
     }
 
