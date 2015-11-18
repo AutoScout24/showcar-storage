@@ -41,7 +41,7 @@ describe("The cookieStore", function () {
             expect(document.cookie.indexOf(pair)).toBe(-1);
         });
 
-        define("the setter", function () {
+        describe("the setter", function () {
             it("should set a cookie", function () {
                 cookieStore.set(key, value);
 
@@ -65,9 +65,7 @@ describe("The cookieStore", function () {
                 checkIfCookieGoesAway({after: 1000, then: done});
             });
 
-            xit("should accept /foo as optional path", function () {
-
-            });
+            it("should accept an optional path [intentionally skipped]");
         });
     });
 

@@ -15,7 +15,7 @@ module.exports = class CookieStore {
         return null;
     }
 
-    set (key, value, { expires = "Fri, 31 Dec 9999 23:59:59 GMT" } = {}) {
+    set (key, value, { expires = "Fri, 31 Dec 9999 23:59:59 GMT", path = "/" } = {}) {
 
         // support expires in seconds
         if (!isNaN(parseFloat(expires)) && isFinite(expires)) {
@@ -30,7 +30,7 @@ module.exports = class CookieStore {
         document.cookie = [
             `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
             `expires=${expires}`,
-            `path=/`
+            `path=${path}`
         ].join("; ");
     }
 
