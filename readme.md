@@ -19,9 +19,16 @@ How to use:
 
 ### Use the following api
 
-#### `someStore.set(key, value);`
+#### `someStore.set(key, value, [{ expires, path }]);`
 
   Sets the given value for the specified key in the respective store.
+  The optional third parameter takes a map with any of the following options:
+  
+  - `expires: <Date|UTCString|int>`
+      Expiration date of the cookie as date-object, UTCString or positive integer in seconds from now.
+      Defaults to `Fri, 31 Dec 9999 23:59:59 GMT`.
+  - `path: <string>`
+      Will be set as the cookie's path. Defaults to `/`.
 
   Returns the reference to the respective store, i.e. `someStore`.
 
