@@ -7,34 +7,64 @@ var stores = {
 };
 
 module.exports = class Storage {
-    constructor (type) {
+    constructor (type, { silent = false } = {}) {
         if (!(type in stores)) {
-            throw new Error(`Unsupported type ${type}`);
+            this.fail(`Storage: Unsupported type ${type}`);
         }
 
+        this.silent = !!silent;
         this.store = new (stores[type])();
     }
 
     get (key, defaultValue = null) {
-        const result = this.store.get(key);
+        try {
+            const result = this.store.get(key);
 
-        if (null === result) {
-            return defaultValue;
+            if (null === result) {
+                return defaultValue;
+            }
+            return result;
+        } catch (e) {
+            return this.fail(e);
         }
-        return result;
     }
 
     set (key, value, options) {
-        this.store.set(key, value, options);
-        return this;
+        try {
+            this.store.set(key, value, options);
+            return this;
+        } catch (e) {
+            return this.fail(e);
+        }
+
     }
 
     has (key) {
-        return this.store.has(key);
+        try {
+            return this.store.has(key);
+        } catch (e) {
+            return this.fail(e);
+        }
     }
 
     remove (key) {
-        this.store.remove(key);
-        return this;
+        try {
+            this.store.remove(key);
+            return this;
+        } catch (e) {
+            return this.fail(e);
+        }
+    }
+
+    fail (reason) {
+        if (this.silent) {
+            return false;
+        }
+
+        if (!reason instanceof Error) {
+            reason = new Error(reason);
+        }
+
+        throw reason;
     }
 };
