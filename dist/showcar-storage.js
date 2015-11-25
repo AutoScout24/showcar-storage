@@ -48,6 +48,8 @@
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
+	function _instanceof(left, right) { if (right != null && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var stores = {
@@ -58,12 +60,18 @@
 	
 	module.exports = (function () {
 	    function Storage(type) {
+	        var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	
+	        var _ref$silent = _ref.silent;
+	        var silent = _ref$silent === undefined ? false : _ref$silent;
+	
 	        _classCallCheck(this, Storage);
 	
 	        if (!(type in stores)) {
-	            throw new Error('Unsupported type ' + type);
+	            this.fail('Storage: Unsupported type ' + type);
 	        }
 	
+	        this.silent = !!silent;
 	        this.store = new stores[type]();
 	    }
 	
@@ -72,29 +80,58 @@
 	        value: function get(key) {
 	            var defaultValue = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
 	
-	            var result = this.store.get(key);
+	            try {
+	                var result = this.store.get(key);
 	
-	            if (null === result) {
-	                return defaultValue;
+	                if (null === result) {
+	                    return defaultValue;
+	                }
+	                return result;
+	            } catch (e) {
+	                return this.fail(e);
 	            }
-	            return result;
 	        }
 	    }, {
 	        key: 'set',
-	        value: function set(key, value) {
-	            this.store.set(key, value);
-	            return this;
+	        value: function set(key, value, options) {
+	            try {
+	                this.store.set(key, value, options);
+	                return this;
+	            } catch (e) {
+	                return this.fail(e);
+	            }
 	        }
 	    }, {
 	        key: 'has',
 	        value: function has(key) {
-	            return this.store.has(key);
+	            try {
+	                return this.store.has(key);
+	            } catch (e) {
+	                return this.fail(e);
+	            }
 	        }
 	    }, {
 	        key: 'remove',
 	        value: function remove(key) {
-	            this.store.remove(key);
-	            return this;
+	            try {
+	                this.store.remove(key);
+	                return this;
+	            } catch (e) {
+	                return this.fail(e);
+	            }
+	        }
+	    }, {
+	        key: 'fail',
+	        value: function fail(reason) {
+	            if (this.silent) {
+	                return false;
+	            }
+	
+	            if (_instanceof(!reason, Error)) {
+	                reason = new Error(reason);
+	            }
+	
+	            throw reason;
 	        }
 	    }]);
 	
@@ -216,9 +253,24 @@
 	    }, {
 	        key: "set",
 	        value: function set(key, value) {
-	            var expires = arguments.length <= 2 || arguments[2] === undefined ? "Fri, 31 Dec 9999 23:59:59 GMT" : arguments[2];
+	            var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 	
-	            document.cookie = [encodeURIComponent(key) + "=" + encodeURIComponent(value), "expires=" + expires, "path=/"].join("; ");
+	            var _ref$expires = _ref.expires;
+	            var expires = _ref$expires === undefined ? "Fri, 31 Dec 9999 23:59:59 GMT" : _ref$expires;
+	            var _ref$path = _ref.path;
+	            var path = _ref$path === undefined ? "/" : _ref$path;
+	
+	            // support expires in seconds
+	            if (!isNaN(parseFloat(expires)) && isFinite(expires)) {
+	                expires = new Date(Date.now() + parseInt(expires) * 1000).toUTCString();
+	            }
+	
+	            // support expires as date-object
+	            if (_instanceof(expires, Date)) {
+	                expires = expires.toUTCString();
+	            }
+	
+	            document.cookie = [encodeURIComponent(key) + "=" + encodeURIComponent(value), "expires=" + expires, "path=" + path].join("; ");
 	        }
 	    }, {
 	        key: "has",
