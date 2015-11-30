@@ -48,8 +48,6 @@
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
-	function _instanceof(left, right) { if (right != null && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var stores = {
@@ -58,7 +56,13 @@
 	    cookie: __webpack_require__(3)
 	};
 	
-	module.exports = (function () {
+	var Storage = (function () {
+	    /**
+	     * @constructor
+	     * @param {string} type The store backend to use
+	     * @param {boolean} [silent=false] Whether to throw exceptions or fail silently returning false
+	     */
+	
 	    function Storage(type) {
 	        var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	
@@ -74,6 +78,14 @@
 	        this.silent = !!silent;
 	        this.store = new stores[type]();
 	    }
+	
+	    /**
+	     * Gets the stored value for a specified key
+	     * @param {string} key The key to look up
+	     * @param defaultValue Return this if no value has been found
+	     * @throws {Error} If not silent
+	     * @returns {string} The stored value or defaultValue
+	     */
 	
 	    _createClass(Storage, [{
 	        key: 'get',
@@ -91,6 +103,16 @@
 	                return this.fail(e);
 	            }
 	        }
+	
+	        /**
+	         * Writes a value to the store under the specified key
+	         * @param {string} key The key to use when storing
+	         * @param {string} value The value to store
+	         * @param {object} [options] A map of options. See the respective backends.
+	         * @throws {Error} If not silent
+	         * @returns {Storage|boolean} If silent, returns false on error. Returns this on success.
+	         */
+	
 	    }, {
 	        key: 'set',
 	        value: function set(key, value, options) {
@@ -101,6 +123,14 @@
 	                return this.fail(e);
 	            }
 	        }
+	
+	        /**
+	         * Checks whether the store knows about the specified key
+	         * @param {string} key The key to check for existance
+	         * @throws {Error} If not silent
+	         * @returns {boolean} If silent, returns false on error (!!)
+	         */
+	
 	    }, {
 	        key: 'has',
 	        value: function has(key) {
@@ -110,6 +140,13 @@
 	                return this.fail(e);
 	            }
 	        }
+	
+	        /**
+	         * Deletes the specified key and its value from the store
+	         * @param {string} key The key to delete
+	         * @returns {Storage|boolean} If silent, returns false on error
+	         */
+	
 	    }, {
 	        key: 'remove',
 	        value: function remove(key) {
@@ -120,6 +157,14 @@
 	                return this.fail(e);
 	            }
 	        }
+	
+	        /**
+	         * Wrapper for error handling
+	         * @private
+	         * @param {Error|string} reason What is happening?
+	         * @returns {boolean}
+	         */
+	
 	    }, {
 	        key: 'fail',
 	        value: function fail(reason) {
@@ -127,7 +172,7 @@
 	                return false;
 	            }
 	
-	            if (_instanceof(!reason, Error)) {
+	            if (!reason instanceof Error) {
 	                reason = new Error(reason);
 	            }
 	
@@ -137,6 +182,8 @@
 	
 	    return Storage;
 	})();
+	
+	module.exports = Storage;
 
 /***/ },
 /* 1 */
@@ -226,8 +273,6 @@
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
-	function _instanceof(left, right) { if (right != null && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	module.exports = (function () {
@@ -240,7 +285,7 @@
 	        value: function get(key) {
 	            var matchedCookie = this.matchSingleCookie(document.cookie, key);
 	
-	            if (_instanceof(matchedCookie, Array) && matchedCookie[1] !== undefined) {
+	            if (matchedCookie instanceof Array && matchedCookie[1] !== undefined) {
 	                try {
 	                    return decodeURIComponent(matchedCookie[1]);
 	                } catch (e) {
@@ -266,7 +311,7 @@
 	            }
 	
 	            // support expires as date-object
-	            if (_instanceof(expires, Date)) {
+	            if (expires instanceof Date) {
 	                expires = expires.toUTCString();
 	            }
 	
