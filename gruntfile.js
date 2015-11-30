@@ -14,11 +14,13 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON("package.json"),
         webpack: loadConfig("webpack"),
         uglify: loadConfig("uglify"),
+        jsdoc: loadConfig("jsdoc"),
         karma: {storage: {configFile: "./config/karma.conf.js"}}
     });
 
     grunt.registerTask("build", ["webpack"]);
-    grunt.registerTask("dist", ["webpack", "uglify"]);
+    grunt.registerTask("docs", ["jsdoc"]);
+    grunt.registerTask("dist", ["jsdoc", "webpack", "uglify"]);
     grunt.registerTask("test", ["karma"]);
 
     grunt.registerTask("default", ["dist"]);
