@@ -2,7 +2,7 @@
   "name": "showcar-storage",
   "version": "1.0.0",
   "description": "This module provides an abstraction layer for storing information on the client-side.",
-  "main": "dist/showcar-storage.min.js",
+  "main": "src/storage.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/autoscout24/showcar-storage.git"
