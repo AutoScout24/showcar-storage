@@ -12,7 +12,7 @@ class Storage {
      * @param {string} type The store backend to use
      * @param {boolean} [silent=false] Whether to throw exceptions or fail silently returning false
      */
-    constructor (type, { silent = false } = {}) {
+    constructor (type, { silent = true } = {}) {
         if (!(type in stores)) {
             this.fail(`Storage: Unsupported type ${type}`);
         }
