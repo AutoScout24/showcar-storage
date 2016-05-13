@@ -46,7 +46,7 @@
 
 	"use strict";
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -56,18 +56,18 @@
 	    cookie: __webpack_require__(3)
 	};
 	
-	var Storage = (function () {
+	var Storage = function () {
 	    /**
 	     * @constructor
 	     * @param {string} type The store backend to use
-	     * @param {boolean} [silent=false] Whether to throw exceptions or fail silently returning false
+	     * @param {boolean} [silent=true] Whether to throw exceptions or fail silently returning false
 	     */
 	
 	    function Storage(type) {
 	        var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	
 	        var _ref$silent = _ref.silent;
-	        var silent = _ref$silent === undefined ? false : _ref$silent;
+	        var silent = _ref$silent === undefined ? true : _ref$silent;
 	
 	        _classCallCheck(this, Storage);
 	
@@ -86,6 +86,7 @@
 	     * @throws {Error} If not silent
 	     * @returns {string} The stored value or defaultValue
 	     */
+	
 	
 	    _createClass(Storage, [{
 	        key: 'get',
@@ -181,7 +182,7 @@
 	    }]);
 	
 	    return Storage;
-	})();
+	}();
 	
 	module.exports = Storage;
 
@@ -191,11 +192,11 @@
 
 	"use strict";
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	module.exports = (function () {
+	module.exports = function () {
 	    function LocalStore() {
 	        _classCallCheck(this, LocalStore);
 	    }
@@ -223,7 +224,7 @@
 	    }]);
 	
 	    return LocalStore;
-	})();
+	}();
 
 /***/ },
 /* 2 */
@@ -231,11 +232,11 @@
 
 	"use strict";
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	module.exports = (function () {
+	module.exports = function () {
 	    function SessionStore() {
 	        _classCallCheck(this, SessionStore);
 	    }
@@ -263,7 +264,7 @@
 	    }]);
 	
 	    return SessionStore;
-	})();
+	}();
 
 /***/ },
 /* 3 */
@@ -271,11 +272,11 @@
 
 	"use strict";
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	module.exports = (function () {
+	module.exports = function () {
 	    function CookieStore() {
 	        _classCallCheck(this, CookieStore);
 	    }
@@ -304,6 +305,7 @@
 	            var expires = _ref$expires === undefined ? "Fri, 31 Dec 9999 23:59:59 GMT" : _ref$expires;
 	            var _ref$path = _ref.path;
 	            var path = _ref$path === undefined ? "/" : _ref$path;
+	
 	
 	            // support expires in seconds
 	            if (!isNaN(parseFloat(expires)) && isFinite(expires)) {
@@ -337,7 +339,7 @@
 	    }]);
 	
 	    return CookieStore;
-	})();
+	}();
 
 /***/ }
 /******/ ]);
