@@ -1,3 +1,5 @@
+![](http://img.badgesize.io/AutoScout24/showcar-storage/master/dist/showcar-storage.min.js?label=js_size_gzip&compression=gzip)
+
 # showcar-storage
 
 This module provides an abstraction layer for storing information on the client-side.
