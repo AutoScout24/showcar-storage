@@ -46,6 +46,10 @@
 
 	"use strict";
 	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62,12 +66,10 @@
 	     * @param {string} type The store backend to use
 	     * @param {boolean} [silent=true] Whether to throw exceptions or fail silently returning false
 	     */
-	
 	    function Storage(type) {
-	        var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-	
-	        var _ref$silent = _ref.silent;
-	        var silent = _ref$silent === undefined ? true : _ref$silent;
+	        var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+	            _ref$silent = _ref.silent,
+	            silent = _ref$silent === undefined ? true : _ref$silent;
 	
 	        _classCallCheck(this, Storage);
 	
@@ -91,7 +93,7 @@
 	    _createClass(Storage, [{
 	        key: 'get',
 	        value: function get(key) {
-	            var defaultValue = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+	            var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 	
 	            try {
 	                var result = this.store.get(key);
@@ -185,6 +187,7 @@
 	}();
 	
 	module.exports = Storage;
+	exports.default = Storage;
 
 /***/ },
 /* 1 */
@@ -299,13 +302,11 @@
 	    }, {
 	        key: "set",
 	        value: function set(key, value) {
-	            var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-	
-	            var _ref$expires = _ref.expires;
-	            var expires = _ref$expires === undefined ? "Fri, 31 Dec 9999 23:59:59 GMT" : _ref$expires;
-	            var _ref$path = _ref.path;
-	            var path = _ref$path === undefined ? "/" : _ref$path;
-	
+	            var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+	                _ref$expires = _ref.expires,
+	                expires = _ref$expires === undefined ? "Fri, 31 Dec 9999 23:59:59 GMT" : _ref$expires,
+	                _ref$path = _ref.path,
+	                path = _ref$path === undefined ? "/" : _ref$path;
 	
 	            // support expires in seconds
 	            if (!isNaN(parseFloat(expires)) && isFinite(expires)) {
