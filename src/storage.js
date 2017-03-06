@@ -107,4 +107,3 @@ class Storage {
 }
 
 module.exports = Storage;
-export default Storage;
